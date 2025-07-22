@@ -31,3 +31,49 @@ document.getElementById("CEP").addEventListener("blur", function () {
     });
 
 });
+
+//////////////////////////////////////////////////////////////////////////////////
+
+document.getElementById("botaoEnviar").addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const dados = {
+        nome: document.getElementById("nome").value,
+        sobrenome: document.getElementById("sobrenome").value,
+        telefone: document.getElementById("telefone").value,
+        celular: document.getElementById("Celular").value,
+        email: document.getElementById("email").value,
+        cep: document.getElementById("CEP").value,
+        logradouro: document.getElementById("logradouro").value,
+        municipio: document.getElementById("municipio").value,
+        uf: document.getElementById("UF").value,
+        numero: document.getElementById("numero").value,
+        complemento: document.getElementById("complemento").value
+        };  
+
+    localStorage.setItem("formulario", JSON.stringify(dados));
+
+    alert("Dados salvos com sucesso!");
+});
+
+
+
+window.addEventListener("load", function () {
+    const dadosSalvos = localStorage.getItem("formulario");
+
+    if (dadosSalvos) {
+        const dados = JSON.parse(dadosSalvos);
+
+        document.getElementById("nome").value = dados.nome || "";
+        document.getElementById("sobrenome").value = dados.sobrenome || "";
+        document.getElementById("telefone").value = dados.telefone || "";
+        document.getElementById("Celular").value = dados.celular || "";
+        document.getElementById("email").value = dados.email || "";
+        document.getElementById("CEP").value = dados.cep || "";
+        document.getElementById("logradouro").value = dados.logradouro || "";
+        document.getElementById("municipio").value = dados.municipio || "";
+        document.getElementById("UF").value = dados.uf || "";
+        document.getElementById("numero").value = dados.numero || "";
+        document.getElementById("complemento").value = dados.complemento || "";
+        }
+});
